@@ -5,40 +5,34 @@
 
 using namespace std;
 
-
 string tenToTwo(int n,int num){
     int binary, sum=0;
     string result="";
 
  while(num>0){
-        binary=num%2;
-        num/=2;
+        binary=num%2; //나머지
+        num/=2; //몫
 
-        if(binary==1)
+        if(binary==1) 
         result+="#";
         else result+=" ";
 
     }   
 
-    while(result.length()<n){
+    while(result.length()<n){ //자릿수를 n만큼 맞춤
         result.append(" ");
     }
-   
-   reverse(result.begin(),result.end());
-
+   reverse(result.begin(),result.end()); //result 반전
 
     return result;
 }
 
-
-
 vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
     vector<string> answer;
-    vector<int> map;
 
     for(int i=0;i<n;i++){
-        map.push_back(arr1[i]|arr2[i]);
-        answer.push_back(tenToTwo(n,map[i]));
+        answer.push_back(tenToTwo(n,arr1[i]|arr2[i]));
+        //비트연산자 사용
     }
     return answer;
 }
