@@ -16,39 +16,30 @@ int solution(string dartResult) {
         case 'S':
             break;
         case 'D':
-            num=temp.back();
-            temp.pop_back();
+            num=temp.back();temp.pop_back();
             temp.push_back(pow(num,2));
             break;
         case 'T':
-            num=temp.back();
-            temp.pop_back();
+            num=temp.back();temp.pop_back();
             temp.push_back(pow(num,3));
             break;
         case '*':
-            num=temp.back();
-            temp.pop_back();
+            num=temp.back(); temp.pop_back();
             if(temp.size()>0){
-                num2=temp.back();
-                temp.pop_back();
+                num2=temp.back();temp.pop_back();
                 temp.push_back(num2*=2);
             }
             temp.push_back(num*=2);
 
         break;
         case '#':
-            num=temp.back();
-            temp.pop_back();
+            num=temp.back();temp.pop_back();
             temp.push_back(num*=(-1));
         break;
         default: //숫자인 경우
-            if(dartResult[i]=='1'&&i!=dartResult.length()-1){
-                if(dartResult[i+1]=='0'){
+            if(dartResult[i]=='1'&&dartResult[i+1]=='0'){
                     temp.push_back(10);
                     i++;
-                }else{
-                    temp.push_back(1);
-                }
             }else{
             temp.push_back(dartResult[i]-'0');}
             break;
@@ -57,7 +48,6 @@ int solution(string dartResult) {
 
     while(!temp.empty()){
         answer+=temp.back();
-
         temp.pop_back();
     }
     return answer;
