@@ -28,27 +28,29 @@ int solution(string dartResult) {
         case '*':
             num=temp.back();
             temp.pop_back();
-            if(temp.size()>1){
+            if(temp.size()>0){
                 num2=temp.back();
-            temp.pop_back();
+                temp.pop_back();
+                temp.push_back(num2*=2);
             }
             temp.push_back(num*=2);
-            if(temp.size()>1)
-            temp.push_back(num2*=2);
+
         break;
         case '#':
             num=temp.back();
             temp.pop_back();
-            if(temp.size()>1){
-                num2=temp.back();
-            temp.pop_back();
-            }
             temp.push_back(num*=(-1));
-            if(temp.size()>1)
-            temp.push_back(num2*=(-1));
         break;
         default: //숫자인 경우
-            temp.push_back(dartResult[i]-'0');
+            if(dartResult[i]=='1'&&i!=dartResult.length()-1){
+                if(dartResult[i+1]=='0'){
+                    temp.push_back(10);
+                    i++;
+                }else{
+                    temp.push_back(1);
+                }
+            }else{
+            temp.push_back(dartResult[i]-'0');}
             break;
         }
     }
@@ -62,6 +64,6 @@ int solution(string dartResult) {
 }
 
 int main(){
-    int answer=solution("1S2D*ET");
+    int answer=solution("1S2D*3T");
     cout<<answer<<endl;
 }
