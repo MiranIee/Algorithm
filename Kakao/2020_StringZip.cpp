@@ -7,47 +7,60 @@ using namespace std;
 int solution(string s)
 {
     int answer = 0;
-    int min_length=1000;
+    int min_length = 1000;
     string result = "";
     string temp = "";
     string before = "";
+    string temps = "";
     int count = 1;
 
-    for (int i = 1; i <= s.length(); i++)
+    for (int i = s.length() / 2; i > 0; i--)
     {
-        for (int j = 0; j < s.length()-i; j += i)
-        {   
-            before=s.substr(j,i);
-            if (before == s.substr(j + i, i))
+        for (int j = 0; j < s.length(); j += i)
+        {
+            temps = s.substr(j, i);
+
+            if (before.empty())
+            {
+                before = temps;
+                continue;
+            }
+
+            if (before == temps)
             {
                 count++;
+                if (i + j >= s.length())
+                {
+                    temp.append(to_string(count));
+                    temp.append(temps);
+                }
             }
             else
             {
-                if(count!=1){
-                temp.append(to_string(count));
-                temp.append(before);
-                count = 1;
+                if (i + j >= s.length())
+                {
+                    temp.append(temps);
                 }
-                else{
+                if (count != 1)
+                {
+                    temp.append(to_string(count));
                     temp.append(before);
-                    count=1;
                 }
+                else
+                {
+                    temp.append(before);
+                }
+                before = temps;
+                count = 1;
             }
         }
-        if(count==1){
-            temp.append(before);
-        }else{
-            temp.append(to_string(count));
-            temp.append(before);
+        cout << temp << endl;
+        if (temp.length() < min_length)
+        {
+            min_length = temp.length();
+            result = temp;
         }
-        cout<<temp<<endl;
-
-        if(temp.length()<min_length){
-            min_length=result.length();
-            result=temp;
-        }
-        temp="";
+        temp = "";
     }
     cout << result << endl;
     return result.length();
@@ -55,6 +68,6 @@ int solution(string s)
 
 int main()
 {
-    int answer = solution("aabbaccc");
+    int answer = solution("abcabcdede");
     cout << answer << endl;
 }
