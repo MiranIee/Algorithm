@@ -26,21 +26,6 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
         }
     }
 
-    int a_cnt = 0;
-    answer.push_back(1);
-    for (int i = 0; i < progresses.size() - 1; i++)
-    {
-        if (day[i] > day[i + 1])
-        {
-            answer[a_cnt]++;
-        }
-        else
-        {
-            a_cnt++;
-            answer.push_back(1);
-        }
-    }
-
     return answer;
 }
 
