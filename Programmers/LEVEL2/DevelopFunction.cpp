@@ -9,6 +9,8 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
     vector<int> answer;
     vector<int> day(progresses.size());
     int count = 0;
+    int max = 0;
+    int d_cnt = 1;
     while (count != progresses.size())
     {
         count = 0;
@@ -26,6 +28,21 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
         }
     }
 
+    max = day[0];
+    for (int i = 1; i < day.size(); i++)
+    {
+        if (max >= day[i])
+        {
+            d_cnt++;
+        }
+        else
+        {
+            answer.push_back(d_cnt);
+            d_cnt = 1;
+            max = day[i];
+        }
+    }
+    answer.push_back(d_cnt);
     return answer;
 }
 
