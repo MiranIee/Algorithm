@@ -6,7 +6,7 @@ using namespace std;
 
 vector<int> solution(vector<int> progresses, vector<int> speeds)
 {
-    vector<int> answer(progresses.size());
+    vector<int> answer;
     vector<int> day(progresses.size());
     int count = 0;
     while (count != progresses.size())
@@ -27,9 +27,8 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
     }
 
     int a_cnt = 0;
-    answer[0] = 1; //벡터를 초기화하지않고 값을 부여하면 segement fault!
-
-    for (int i = 0; i < progresses.size(); i++)
+    answer.push_back(1);
+    for (int i = 0; i < progresses.size() - 1; i++)
     {
         if (day[i] > day[i + 1])
         {
@@ -38,7 +37,7 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
         else
         {
             a_cnt++;
-            answer[a_cnt] = 1;
+            answer.push_back(1);
         }
     }
 
