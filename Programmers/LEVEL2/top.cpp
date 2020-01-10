@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include <algorithm>
 
 using namespace std;
@@ -21,20 +20,11 @@ vector<int> solution(vector<int> heights)
             }
             count--;
         }
-        if (count <= 0)
+        if (count < 0)
             answer.push_back(0);
     }
     answer.push_back(0);
     reverse(answer.begin(), answer.end());
 
     return answer;
-}
-
-int main()
-{
-    vector<int> answer = solution({5, 4, 3, 2, 1});
-    for (int i = 0; i < answer.size(); i++)
-    {
-        cout << answer[i] << endl;
-    }
 }
