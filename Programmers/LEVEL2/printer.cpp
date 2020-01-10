@@ -29,7 +29,7 @@ int solution(vector<int> priorities, int location)
         else
         {
             v.push_back(v.front());
-            v.erase(v.begin());
+            v.erase(v.front());
         }
     }
 
