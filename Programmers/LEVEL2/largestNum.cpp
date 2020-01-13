@@ -29,9 +29,3 @@ string solution(vector<int> numbers)
         answer = "0";
     return answer;
 }
-
-int main()
-{
-    string answer = solution({3, 30, 34, 5, 9});
-    cout << answer << endl;
-}
