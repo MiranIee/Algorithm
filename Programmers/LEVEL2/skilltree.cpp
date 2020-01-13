@@ -19,11 +19,11 @@ int solution(string skill, vector<string> skill_trees)
         for (int j = 1; j < skill.length(); j++)
         {
             tempPos = tempStr.find(skill[j]);
-            if (tempPos != -1) // 존재하는 경우
-            {
+            if (tempPos != -1)
+            { // 존재하는 경우
                 string temp = tempStr.substr(0, tempPos);
-                if (temp.find(skill[j - 1]) == -1) //순서가 잘못된 경우
-                {
+                if (temp.find(skill[j - 1]) == -1)
+                { //순서가 잘못된 경우
                     chk = true;
                     break;
                 }
@@ -35,10 +35,4 @@ int solution(string skill, vector<string> skill_trees)
         }
     }
     return answer;
-}
-
-int main()
-{
-    int answer = solution("CBD", {"BACDE", "CBADF", "AECB", "BDA"});
-    cout << answer << endl;
 }
