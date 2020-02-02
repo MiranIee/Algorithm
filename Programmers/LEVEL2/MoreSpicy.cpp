@@ -13,10 +13,14 @@ int solution(vector<int> scoville, int K)
 
     while (true)
     {
-        sort(scoville.begin(), scoville.end());
+        //sort(scoville.begin(), scoville.end());
         if (scoville[0] >= K)
             break;
-
+        if (scoville.size() == 1)
+        {
+            answer = -1;
+            break;
+        }
         new_s = scoville[0] + (2 * scoville[1]);
         scoville[0] = new_s;
         scoville.erase(scoville.begin() + 1);
