@@ -9,21 +9,27 @@ int solution(vector<int> scoville, int K)
 {
     int answer = 0;
     int new_s = 0;
+    int min1 = 0, min2 = 0;
+
     sort(scoville.begin(), scoville.end());
 
     while (true)
     {
-        //sort(scoville.begin(), scoville.end());
-        if (scoville[0] >= K)
+        min1 = *min_element(scoville.begin(), scoville.end());
+
+        if (min1 >= K)
             break;
         if (scoville.size() == 1)
         {
             answer = -1;
             break;
         }
-        new_s = scoville[0] + (2 * scoville[1]);
-        scoville[0] = new_s;
-        scoville.erase(scoville.begin() + 1);
+        scoville.erase(min_element(scoville.begin(), scoville.end()));
+        min2 = *min_element(scoville.begin(), scoville.end());
+        scoville.erase(min_element(scoville.begin(), scoville.end()));
+
+        new_s = min1 + (2 * min2);
+        scoville.push_back(new_s);
         answer++;
     }
 
