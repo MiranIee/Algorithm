@@ -10,13 +10,15 @@ string solution(string number, int k)
     string answer = "";
     int min = 0;
     int k2 = 0;
-    vector<int> temp;
+    vector<char> temp;
 
     for (int i = 0; i < number.length(); i++)
     {
-        temp.push_back(number[i] - '0');
+        temp.push_back(number[i]);
     }
-    vector<int>::iterator it = temp.begin();
+    //int로 바꾸니까 시간초과
+
+    vector<char>::iterator it = temp.begin();
 
     while (k2 != k)
     {
@@ -33,15 +35,16 @@ string solution(string number, int k)
                 it++;
             }
         }
-        else
+        else //"1010",2 -> 케이스 해결
         {
+            temp.erase(it - 1);
             break;
         }
     }
 
     for (int i = 0; i < temp.size(); i++)
     {
-        answer += to_string(temp[i]);
+        answer += temp[i];
     }
 
     return answer;
@@ -49,6 +52,6 @@ string solution(string number, int k)
 
 int main()
 {
-    string answer = solution("4177252841", 4);
+    string answer = solution("1010", 2);
     cout << answer;
 }
