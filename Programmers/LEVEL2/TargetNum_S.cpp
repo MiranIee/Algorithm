@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -31,4 +32,10 @@ int solution(vector<int> numbers, int target)
     DFS(numbers, sum);
 
     return answer;
+}
+
+int main()
+{
+    answer = solution({1, 1, 1}, 1);
+    cout << answer << endl;
 }
