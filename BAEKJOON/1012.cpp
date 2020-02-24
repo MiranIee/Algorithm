@@ -7,9 +7,12 @@ using namespace std;
 int graph[MAX][MAX];
 bool visited[MAX][MAX];
 int N, M;
+vector<int> answer;
 
 void DFS(int x, int y)
 {
+    visited[x][y] = true;
+
     int nx, ny;
     int dirx[4] = {-1, 1, 0, 0};
     int diry[4] = {0, 0, -1, 1};
@@ -18,6 +21,7 @@ void DFS(int x, int y)
     {
         nx = x + dirx[i];
         ny = y + diry[i];
+
         if (0 <= nx && nx <= N - 1 && 0 <= ny && ny <= M - 1)
             if (graph[nx][ny] == 1 && visited[nx][ny] == false)
                 DFS(nx, ny);
@@ -53,6 +57,12 @@ int main()
                 }
             }
         }
-        cout << cnt << endl;
+        answer.push_back(cnt);
+        graph[MAX][MAX] = {0};
     }
+
+    for (int i = 0; i < answer.size(); i++)
+        cout << answer[i] << endl;
+
+    return 0;
 }
