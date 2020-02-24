@@ -1,13 +1,11 @@
 #include <iostream>
-#include <vector>
-
+#include <cstring> //memset
 using namespace std;
-#define MAX 51
+#define MAX 50 //50인 경우
 
 int graph[MAX][MAX];
 bool visited[MAX][MAX];
 int N, M;
-vector<int> answer;
 
 int dirx[4] = {0, 0, -1, 1};
 int diry[4] = {1, -1, 0, 0};
@@ -27,17 +25,6 @@ void DFS(int x, int y)
                 DFS(nx, ny);
     }
 }
-void init()
-{
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < M; j++)
-        {
-            graph[i][j] = 0;
-            visited[i][j] = false;
-        }
-    }
-}
 
 int main()
 {
@@ -50,14 +37,15 @@ int main()
     while (T--) // 테스트케이스만큼 반복
     {
         cnt = 0;
-        init();
+        memset(graph, 0, sizeof(graph));
+        memset(visited, 0, sizeof(visited));
 
         cin >> M >> N >> K;
 
         for (int j = 0; j < K; j++) // 배추 위치
         {
             cin >> temp_x >> temp_y;
-            graph[temp_y][temp_x] = 1;
+            graph[temp_y][temp_x] = 1; //시작점이 왼쪽 상단
         }
 
         for (int k = 0; k < N; k++)
@@ -71,11 +59,8 @@ int main()
                 }
             }
         }
-        answer.push_back(cnt);
+        cout << cnt << endl;
     }
-
-    for (int i = 0; i < answer.size(); i++)
-        cout << answer[i] << endl;
 
     return 0;
 }
