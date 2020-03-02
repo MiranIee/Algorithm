@@ -10,17 +10,16 @@ int map[MAX][MAX];
 bool visited[MAX][MAX];
 int dirx[4] = {0, 0, -1, 1};
 int diry[4] = {-1, 1, 0, 0};
-int cnt = 0;
 int N;
-vector<int> danzi_cnt = {0};
+vector<int> danzi_cnt;
 
 void BFS(int x, int y)
 {
     queue<pair<int, int>> q;
     q.push(make_pair(x, y));
 
+    int cnt = 1;
     visited[x][y] = true;
-    danzi_cnt[cnt]++;
 
     while (!q.empty())
     {
@@ -38,12 +37,14 @@ void BFS(int x, int y)
                 if (map[nx][ny] && !visited[nx][ny])
                 {
                     visited[nx][ny] = true;
-                    danzi_cnt[cnt]++;
+                    cnt++;
                     q.push(make_pair(nx, ny));
                 }
             }
         }
     }
+
+    danzi_cnt.push_back(cnt);
 }
 int main()
 {
@@ -56,15 +57,14 @@ int main()
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
         {
-            if (map[i][j] && !visited)
+            if (map[i][j] && !visited[i][j])
             {
-                cnt++;
                 BFS(i, j);
             }
         }
 
     sort(danzi_cnt.begin(), danzi_cnt.end());
-    cout << cnt << endl;
+    cout << danzi_cnt.size() << endl;
     for (int i = 0; i < danzi_cnt.size(); i++)
     {
         cout << danzi_cnt[i] << endl;
