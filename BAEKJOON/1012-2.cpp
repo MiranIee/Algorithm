@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring> //memset
 #include <queue>
+#include <stdio.h>
 using namespace std;
 #define MAX 50
 
@@ -53,11 +54,12 @@ int main()
         memset(graph, 0, sizeof(graph));
         memset(visited, 0, sizeof(visited));
 
-        cin >> M >> N >> K;
+        scanf("%d %d %d", &M, &N, &K);
 
         for (int j = 0; j < K; j++) // 배추 위치
         {
-            cin >> temp_x >> temp_y;
+
+            scanf("%d %d", &temp_x, &temp_y);
             graph[temp_y][temp_x] = 1; //시작점이 왼쪽 상단
         }
 
