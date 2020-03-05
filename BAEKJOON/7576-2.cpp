@@ -11,12 +11,10 @@ pair<int, int> map[MAX][MAX];
 int dirx[4] = {-1, 1, 0, 0};
 int diry[4] = {0, 0, -1, 1};
 int M, N;
-int day = 0;
 int answer = 0;
 
 void BFS(queue<pair<int, int>> q)
 {
-    int temp = 0;
     int x, y;
 
     while (!q.empty())
@@ -60,27 +58,21 @@ int main()
     scanf("%d %d", &M, &N);
     for (int i = 0; i < N; i++)
         for (int j = 0; j < M; j++)
-            scanf("%d", &map[i][j]);
-
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < M; j++)
         {
-            if (map[i][j].first == 1 && !visited[i][j]) //map[i][j].first는 0이 아닌 모든 경우 들어감
+            scanf("%d", &map[i][j]);
+            if (map[i][j].first == 1) //map[i][j].first는 0이 아닌 모든 경우 들어감
             {
                 q.push(make_pair(i, j));
                 visited[i][j] = true;
             }
         }
-
     BFS(q);
 
     answer = max_element(&map[0][0], &map[N][M])->second;
-    //.이랑 ->차이
-
     zero = find_if(&(map[0][0]), &(map[N][M]), isEqual);
 
     if (zero != &(map[N][M])) //0이 존재할때
         answer = -1;
 
-      cout << answer << endl;
+    cout << answer << endl;
 }
