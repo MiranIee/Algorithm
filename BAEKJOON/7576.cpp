@@ -49,8 +49,6 @@ void BFS(int x, int y)
                     }
                 }
             }
-            if (map[x][y].second > answer)
-                answer = map[x][y].second;
         }
     }
 }
@@ -79,13 +77,24 @@ int main()
         }
         cout << endl;
     }
+
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < M; j++)
         {
-            cout << map[i][j].first;
+            if (map[i][j].first == 0)
+            {
+                answer = -1;
+                break;
+            }
+            if (map[i][j].second > answer)
+            {
+                answer = map[i][j].second;
+            }
         }
-        cout << endl;
+        if (answer == -1)
+            break;
     }
+
     cout << answer << endl;
 }
