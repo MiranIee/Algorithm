@@ -11,6 +11,7 @@ int dirx[4] = {-1, 1, 0, 0};
 int diry[4] = {0, 0, -1, 1};
 int M, N;
 int day = 0;
+int answer = 0;
 
 void BFS(int x, int y)
 {
@@ -39,15 +40,17 @@ void BFS(int x, int y)
                     visited[nx][ny] = true;
                     q.push(make_pair(nx, ny));
                 }
-                else if (map[nx][ny].first == 1 && visited[nx][ny] == true)
+                else if (map[nx][ny].first && visited[nx][ny])
                 {
-                    if ((map[nx][ny].second > map[x][y].second + 1) && map[x][y].first != -1)
+                    if (map[nx][ny].second > map[x][y].second + 1)
                     {
                         map[nx][ny].second = map[x][y].second + 1;
                         q.push(make_pair(nx, ny));
                     }
                 }
             }
+            if (map[x][y].second > answer)
+                answer = map[x][y].second;
         }
     }
 }
@@ -62,7 +65,7 @@ int main()
     for (int i = 0; i < N; i++)
         for (int j = 0; j < M; j++)
         {
-            if (map[i][j].first && !visited[i][j])
+            if (map[i][j].first == 1 && !visited[i][j]) //map[i][j].first는 0이 아닌 모든 경우 들어감
             {
                 BFS(i, j);
             }
@@ -71,8 +74,18 @@ int main()
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < M; j++)
+        {
             cout << map[i][j].second;
+        }
         cout << endl;
     }
-    //cout << day << endl;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            cout << map[i][j].first;
+        }
+        cout << endl;
+    }
+    cout << answer << endl;
 }
