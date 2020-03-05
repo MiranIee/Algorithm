@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <queue>
 #include <algorithm>
-#define MAX 1000
+#define MAX 1000 + 1
 
 using namespace std;
 bool visited[MAX][MAX];
@@ -14,13 +14,10 @@ int M, N;
 int day = 0;
 int answer = 0;
 
-void BFS(int x, int y)
+void BFS(queue<pair<int, int>> q)
 {
     int temp = 0;
-    queue<pair<int, int>> q;
-    q.push(make_pair(x, y));
-
-    visited[x][y] = true;
+    int x, y;
 
     while (!q.empty())
     {
@@ -42,22 +39,9 @@ void BFS(int x, int y)
                     visited[nx][ny] = true;
                     q.push(make_pair(nx, ny));
                 }
-                else if (map[nx][ny].first && visited[nx][ny])
-                {
-                    if (map[nx][ny].second > map[x][y].second + 1)
-                    {
-                        map[nx][ny].second = map[x][y].second + 1;
-                        q.push(make_pair(nx, ny));
-                    }
-                }
             }
         }
-        // for (int i = 0; i < 4; i++)
-        // {
-        //     answer = map[x][y].second;
-        // }
     }
-    //answer = map[x][y].second;
 }
 bool isEqual(pair<int, int> &element)
 {
@@ -66,8 +50,11 @@ bool isEqual(pair<int, int> &element)
 
 int main()
 {
+    queue<pair<int, int>> q;
+    fill_n(map[0], MAX * MAX + 1, make_pair(-1, 0));
+
     pair<int, int> *zero;
-    fill_n(map[0], MAX * MAX, make_pair(-1, 0));
+
     scanf("%d %d", &M, &N);
     for (int i = 0; i < N; i++)
         for (int j = 0; j < M; j++)
@@ -78,9 +65,13 @@ int main()
         {
             if (map[i][j].first == 1 && !visited[i][j]) //map[i][j].first는 0이 아닌 모든 경우 들어감
             {
-                BFS(i, j);
+                q.push(make_pair(i, j));
+                visited[i][j] = true;
             }
         }
+
+    BFS(q);
+
     // cout << endl;
     // for (int i = 0; i < N; i++)
     // {
@@ -109,7 +100,7 @@ int main()
 
     // cout << "last" << &map[N - 1][M - 1].first << endl;
 
-    if (zero != &(map[N - 1][M - 1])) //0을 못찾았을 때
+    if (zero != &(map[N - 1][M - 1])) //0이 존재할때
         answer = -1;
 
     cout << answer << endl;
