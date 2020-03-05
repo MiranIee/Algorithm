@@ -52,12 +52,7 @@ void BFS(int x, int y)
                 }
             }
         }
-        // for (int i = 0; i < 4; i++)
-        // {
-        //     answer = map[x][y].second;
-        // }
     }
-    //answer = map[x][y].second;
 }
 bool isEqual(pair<int, int> &element)
 {
@@ -67,6 +62,9 @@ bool isEqual(pair<int, int> &element)
 int main()
 {
     pair<int, int> *zero;
+    visited[MAX][MAX] = {
+        false,
+    };
     fill_n(map[0], MAX * MAX, make_pair(-1, 0));
     scanf("%d %d", &M, &N);
     for (int i = 0; i < N; i++)

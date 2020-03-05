@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <queue>
 #include <algorithm>
-#define MAX 1000 + 1
+#define MAX 1001
 
 using namespace std;
 bool visited[MAX][MAX];
@@ -51,8 +51,10 @@ bool isEqual(pair<int, int> &element)
 int main()
 {
     queue<pair<int, int>> q;
-    fill_n(map[0], MAX * MAX + 1, make_pair(-1, 0));
-
+    visited[MAX][MAX] = {
+        false,
+    };
+    fill_n(map[0], MAX * MAX, make_pair(-1, 0));
     pair<int, int> *zero;
 
     scanf("%d %d", &M, &N);
@@ -72,36 +74,13 @@ int main()
 
     BFS(q);
 
-    // cout << endl;
-    // for (int i = 0; i < N; i++)
-    // {
-    //     for (int j = 0; j < M; j++)
-    //     {
-    //         cout << map[i][j].first << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // cout << endl;
-    // for (int i = 0; i < N; i++)
-    // {
-    //     for (int j = 0; j < M; j++)
-    //     {
-    //         cout << map[i][j].second << " ";
-    //     }
-    //     cout << endl;
-    // }
-
-    answer = max_element(&map[0][0], &map[N - 1][M - 1])->second;
+    answer = max_element(&map[0][0], &map[N][M])->second;
     //.이랑 ->차이
 
-    zero = find_if(&(map[0][0]), &(map[N - 1][M - 1]), isEqual);
+    zero = find_if(&(map[0][0]), &(map[N][M]), isEqual);
 
-    // cout << "zero" << zero << endl;
-
-    // cout << "last" << &map[N - 1][M - 1].first << endl;
-
-    if (zero != &(map[N - 1][M - 1])) //0이 존재할때
+    if (zero != &(map[N][M])) //0이 존재할때
         answer = -1;
 
-    cout << answer << endl;
+      cout << answer << endl;
 }
