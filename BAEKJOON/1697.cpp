@@ -4,21 +4,27 @@ using namespace std;
 
 int K;
 queue<pair<int, int>> q;
-int min_ = 100000000;
+int min_ = 9999999999999999999999;
 
 void BFS()
 {
     int x, y;
+    string temp;
     while (!q.empty())
     {
         x = q.front().first;
         y = q.front().second;
+        //temp = q.front().second;
         q.pop();
         if (x != K)
         {
-            q.push(make_pair(x - 1, y + 1));
-            q.push(make_pair(x + 1, y + 1));
-            q.push(make_pair(x * 2, y + 1));
+            if (y + 1 < min_)
+            {
+                temp += to_string(x);
+                q.push(make_pair(x - 1, y + 1));
+                q.push(make_pair(x + 1, y + 1));
+                q.push(make_pair(x * 2, y + 1));
+            }
         }
         else
         {
@@ -32,10 +38,10 @@ int main()
 {
     int N;
     scanf("%d %d", &N, &K);
-    q.push(make_pair(N - 1, 0));
-    q.push(make_pair(N + 1, 0));
-    q.push(make_pair(N * 2, 0));
+    q.push(make_pair(N - 1, 1));
+    q.push(make_pair(N + 1, 1));
+    q.push(make_pair(N * 2, 1));
     BFS();
 
-    cout << min << endl;
+    cout << min_ << endl;
 }
