@@ -5,7 +5,7 @@ using namespace std;
 
 int K;
 queue<pair<int, int>> q;
-int check[MAX];
+int check[MAX + 1];
 int min_ = 999999999;
 
 void BFS()
