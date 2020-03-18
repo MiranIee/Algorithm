@@ -1,13 +1,13 @@
 #include <iostream>
 #include <queue>
-#define MAX 100001
+#define MAX 100000
 using namespace std;
 
 int K;
 queue<pair<int, int>> q;
 int check[MAX];
 int min_ = 999999999;
-//10000, 0이랑 x범위..
+
 void BFS()
 {
     int x, y;
@@ -26,12 +26,12 @@ void BFS()
                 check[x - 1] = true;
                 q.push(make_pair(x - 1, y + 1));
             }
-            if (x + 1 < MAX && !check[x + 1])
+            if (x + 1 <= MAX && !check[x + 1])
             {
                 check[x + 1] = true;
                 q.push(make_pair(x + 1, y + 1));
             }
-            if (x * 2 < MAX && !check[2 * x])
+            if (x * 2 <= MAX && !check[2 * x])
             {
                 check[x * 2] = true;
                 q.push(make_pair(x * 2, y + 1));
