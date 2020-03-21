@@ -3,7 +3,7 @@
 #include <queue>
 using namespace std;
 
-bool checked[100000 + 1];
+bool checked[1000000 + 1];
 
 int BFS(int n)
 {
@@ -20,6 +20,7 @@ int BFS(int n)
 
         if (x == 1)
             break;
+
         if (!checked[x - 1])
         {
             checked[x - 1] = true;
@@ -27,12 +28,12 @@ int BFS(int n)
         }
         if (x % 3 == 0 && !checked[x / 3])
         {
-            checked[x % 3] = true;
+            checked[x / 3] = true;
             q.push(make_pair(x / 3, y + 1));
         }
         if (x % 2 == 0 && !checked[x / 2])
         {
-            checked[x % 2] = true;
+            checked[x / 2] = true;
             q.push(make_pair(x / 2, y + 1));
         }
     }
@@ -44,7 +45,7 @@ int main()
     scanf("%d", &n);
     if (n == 1)
     {
-        cout << 1 << endl;
+        cout << 0 << endl;
         return 0;
     }
     cout << BFS(n) << endl;
