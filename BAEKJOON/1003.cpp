@@ -3,19 +3,17 @@
 #include <cstring>
 using namespace std;
 
-int dp[40];
+pair<int, int> dp[40];
 
-int DP(int n)
+void DP(int n)
 {
-    if (n == 0)
+    dp[0] = make_pair(1, 0);
+    dp[1] = make_pair(0, 1);
+    dp[2] = make_pair(1, 1);
+    for (int i = 3; i <= n; i++)
     {
-    }
-    else if (n == 1)
-    {
-    }
-    else
-    {
-        return DP(n - 1) + DP(n - 2);
+        dp[i].first = dp[i - 1].first + dp[i - 2].first;
+        dp[i].second = dp[i - 1].second + dp[i - 2].second;
     }
 }
 
@@ -25,9 +23,11 @@ int main()
     scanf("%d", &N);
     for (int i = 0; i < N; i++)
     {
-        memset(dp, 0, sizeof(dp));
+        memset(dp, (0, 0), sizeof(dp));
         scanf("%d", &n);
-        cout << DP(n) << endl;
+        DP(n);
+        cout << dp[n].first << " " << dp[n].second << endl;
     }
+
     return 0;
 }
