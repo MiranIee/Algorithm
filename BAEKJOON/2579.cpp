@@ -3,46 +3,34 @@
 #include <cstring>
 using namespace std;
 
-int dp[300];
+int dp[300 + 2];
 int stair[300];
 
 int DP(int n)
 {
     int cnt = 0;
-    int tmp = 0;
-    int i = 0;
-    while (i + 2 <= n)
+    bool chk = false;
+
+    for (int i = 0; i < n; i++)
     {
-        if ((i + 1 == n) || (i + 2 == n))
+        dp[i] = dp[i] + stair[i + 2];
+        if (cnt < 3) //연속해서 밟지 않은 경우
         {
-            if (cnt < 3)
-                tmp += max(stair[i + 1], stair[i + 2]);
+            if (!chk)
+                cnt++;
             else
-                tmp += stair[i + 2];
-            break;
+                cnt = 0;
+
+            dp[i] = max(dp[i], dp[i] + stair[i + 1]);
+            chk = false;
         }
-        else if (cnt < 3) //연속해서 올라간 게 아니라면
+        else //연속해서 밟았다면
         {
-            if (stair[i + 1] > stair[i + 2])
-            {
-                tmp += stair[i + 1];
-                i++;
-            }
-            else if (stair[i + 1] > stair[i + 2])
-            {
-                tmp += stair[i + 2];
-                i += 2;
-            }
-            cnt++;
-        }
-        else //연속해서 올라갔다면
-        {
-            tmp += stair[i + 2];
-            i += 2;
+            chk = true;
             cnt = 0;
         }
     }
-    return tmp;
+    return dp[n];
 }
 
 int main()
