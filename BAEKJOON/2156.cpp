@@ -5,30 +5,29 @@
 using namespace std;
 
 int grape[MAX];
-int dp[MAX][2];
+int dp[MAX];
 //0은 연속해서, 1은 한칸 뛰어서
 
 int DP(int n)
 {
-    dp[0][0] = grape[0];
-    dp[1][0] = dp[0][0] + grape[0];
-    dp[1][1] = grape[1];
+    dp[0] = 0;
+    dp[1] = grape[1];
+    dp[2] = grape[1] + grape[2];
 
-    for (int i = 2; i < n; i++)
+    for (int i = 3; i <= n; i++)
     {
-        dp[i][0] = max(dp[i][0], dp[i - 1][1] + grape[i]);
-        dp[i][1] = max({dp[i][1], dp[i - 2][0] + grape[i], dp[i - 2][1] + grape[i]});
+        dp[i] = max({dp[i - 1], dp[i - 2] + grape[i], dp[i - 3] + grape[i - 1] + grape[i]});
     }
-    return 0;
+    return dp[n];
 }
 
 int main()
 {
     int N;
     scanf("%d", &N);
-    for (int i = 0; i < N; i++)
+    for (int i = 1; i <= N; i++)
     {
-        scanf("%d", grape[i]);
+        scanf("%d", &grape[i]);
     }
     cout << DP(N) << endl;
 }
