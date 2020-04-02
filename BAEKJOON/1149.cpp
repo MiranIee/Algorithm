@@ -19,8 +19,9 @@ int DP(int n)
         dp[i][1] = min(dp[i - 1][0] + RGB[i][1], dp[i - 1][2] + RGB[i][1]);
         dp[i][2] = min(dp[i - 1][1] + RGB[i][2], dp[i - 1][0] + RGB[i][2]);
     }
-    return (dp[n - 1][0] > dp[n - 1][1] ? (dp[n - 1][1] > dp[n - 1][2] ? dp[n - 1][2] : dp[n - 1][1]) : (dp[n - 1][0] > dp[n - 1][2] ? dp[n - 1][2] : dp[n - 1][0]));
+    return min({dp[n - 1][0], dp[n - 1][1], dp[n - 1][2]});
 }
+
 int main()
 {
     int n;
