@@ -7,7 +7,7 @@ using namespace std;
 
 long long dp[MAX];
 
-int DP(int n)
+long long DP(int n)
 {
     dp[0] = 0;
     dp[1] = 1; //1
@@ -17,7 +17,7 @@ int DP(int n)
     {
         dp[i] = dp[i - 1] + dp[i - 2];
     }
-    return 0;
+    return dp[n];
 }
 
 int main()
