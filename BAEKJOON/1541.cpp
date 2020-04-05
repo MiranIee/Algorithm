@@ -1,13 +1,10 @@
 #include <iostream>
 #include <stdio.h>
-#include <algorithm>
 #include <string>
-#include <vector>
 using namespace std;
 
 int main()
 {
-    vector<int> v;
     int sum = 0;
     string temp = "";
     string input;
