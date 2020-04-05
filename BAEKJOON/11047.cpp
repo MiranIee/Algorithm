@@ -8,14 +8,13 @@ int coin[MAX];
 
 int greedy(int n, int k)
 {
-    int i = 0;
+    int i = n - 1;
     int answer = 0;
     int cnt = 0;
-    sort(coin, coin + n, greater<int>());
 
-    while (k != 0)
+    while (k != 0 && i >= 0)
     {
-        if (k - coin[i] > 0)
+        if (k - coin[i] >= 0)
         {
             for (cnt = 1; k - cnt * coin[i] >= 0; cnt++)
             {
@@ -23,7 +22,7 @@ int greedy(int n, int k)
             k -= (cnt - 1) * coin[i];
             answer += (cnt - 1);
         }
-        i++;
+        i--;
     }
 
     return answer;
