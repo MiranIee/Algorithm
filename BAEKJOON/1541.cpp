@@ -7,22 +7,26 @@ using namespace std;
 
 int main()
 {
-    vector<int> number;
-    vector<char> symbol;
-
+    vector<int> v;
+    int sum = 0;
+    string temp = "";
     string input;
-    scanf("%s", &input);
-    for (int i = 0; i < input.length(); i++)
-    {
-        if (input[i] == '0' || input[i] > '9')
-            symbol.push_back(input[i]);
-        if (input[i] >= '0' && input[i] <= '9')
-            number.push_back(input[i]);
-    }
+    cin >> input;
+    bool minus = false;
 
-    for (int i = 0; i < number.size(); i++)
-        cout << number[i] << " ";
-    cout << endl;
-    for (int i = 0; i < symbol.size(); i++)
-        cout << symbol[i] << " ";
+    for (int i = 0; i < input.size(); i++)
+    {
+        if (input[i] == '+' || input[i] == '-')
+        {
+            if (minus)
+                sum -= stoi(temp);
+            else
+                sum += stoi(temp);
+            if (input[i] == '-')
+                minus = true;
+            temp = "";
+        }
+        else
+            temp += input[i];
+    }
 }
