@@ -17,11 +17,11 @@ int greedy(int n, int k)
     {
         if (k - coin[i] > 0)
         {
-            for (cnt = 0; k - cnt * coin[i] > 0; cnt++)
+            for (cnt = 1; k - cnt * coin[i] >= 0; cnt++)
             {
             }
-            k -= cnt * coin[i];
-            answer += cnt;
+            k -= (cnt - 1) * coin[i];
+            answer += (cnt - 1);
         }
         i++;
     }
