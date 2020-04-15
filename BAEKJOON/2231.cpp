@@ -18,7 +18,6 @@ int solution(int N)
     //     num = num / 10;
     //     cnt++;
     // }
-    cout << "length: " << s_N.length() << endl;
 
     for (i = N - (s_N.length()) * 9; i < N; i++)
     {
@@ -26,7 +25,7 @@ int solution(int N)
         sum = i;
         for (int j = 0; j < s_I.length(); j++)
         {
-            sum += s_I[j];
+            sum += s_I[j] - '0';
         }
         if (sum == N)
             break;
