@@ -28,9 +28,9 @@ int solution(int N)
             sum += s_I[j] - '0';
         }
         if (sum == N)
-            break;
+            return i;
     }
-    return i;
+    return 0;
 }
 int main()
 {
