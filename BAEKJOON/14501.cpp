@@ -12,15 +12,18 @@ int solution(int N, vector<pair<int, int>> v)
 
     for (int i = 0; i < N; i++)
     {
-        if ((N - i) + 1 < v[i].first)
+        if (N - i < v[i].first)
             continue;
-        temp_sum = 0;
-        j = (v[i].first - i) + 1;
+        temp_sum = v[i].second;
+        j = v[i].first + i;
 
         while (j < N)
         {
-            if ((N - j) + 1 < v[j].first)
+            if (N - j < v[j].first)
+            {
+                j++;
                 continue;
+            }
             else
             {
                 temp_sum += v[j].second;
