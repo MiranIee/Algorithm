@@ -6,11 +6,20 @@ using namespace std;
 int T[MAX] = {0};
 int P[MAX] = {0};
 int N;
-
-int DFS(int i, int sum)
+int ans;
+void DFS(int i, int sum)
 {
-    if (i == N)
-        retrun sum;
+    if (i >= N)
+    {
+        ans = sum;
+        return;
+    }
+
+    if (N - 1 >= T[i]) //is it possible
+    {
+        DFS(i + 1, sum); //건너뛸경우
+        DFS(i + T[i], sum + P[i]);
+    }
 }
 
 int main()
@@ -22,5 +31,8 @@ int main()
     {
         scanf("%d %d", &T[i], &P[i]);
     }
-    cout << DFS(0, 0) << endl;
+    DFS(0, 0);
+    cout << ans << endl;
+
+    return 0;
 }
