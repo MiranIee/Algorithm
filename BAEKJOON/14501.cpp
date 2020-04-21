@@ -7,32 +7,22 @@ using namespace std;
 int solution(int N, vector<pair<int, int>> v)
 {
     int temp_sum = 0;
-    int j;
+    int DP[N + 1] = {0};
     vector<int> sum;
+    DP[0] = v[0].second;
+    DP[v[0].first] = v[0].second;
 
-    for (int i = 0; i < N; i++)
+    for (int i = 1; i < N; i++)
     {
-        if (N - i < v[i].first)
-            continue;
-        temp_sum = v[i].second;
-        j = v[i].first + i;
-
-        while (j < N)
+        if (N - i >= v[i].first)
         {
-            if (N - j < v[j].first)
-            {
-                j++;
-                continue;
-            }
-            else
-            {
-                temp_sum += v[j].second;
-                j += v[j].first;
-            }
+            // if (DP[i - 1] < DP[i]) //받은 게 더 크다면
+            DP[i + v[i].first] = max(DP[i + v[i].first], DP[i] + v[i].second);
+            DP[i] = max(DP[i - 1], DP[i]);
         }
-        sum.push_back(temp_sum);
     }
-    return *max_element(sum.begin(), sum.end());
+
+    return DP[N];
 }
 
 int main()
