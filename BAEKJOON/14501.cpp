@@ -8,7 +8,6 @@ int solution(int N, vector<pair<int, int>> v)
 {
     int temp_sum = 0;
     int DP[N + 1] = {0};
-    vector<int> sum;
     DP[0] = 0;
     DP[v[0].first] = v[0].second;
 
