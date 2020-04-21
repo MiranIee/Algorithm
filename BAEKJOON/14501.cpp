@@ -22,7 +22,7 @@ int solution(int N, vector<pair<int, int>> v)
         }
     }
 
-    return DP[N];
+    return *max_element(DP, DP + N + 1);
 }
 
 int main()
