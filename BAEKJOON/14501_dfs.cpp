@@ -11,7 +11,7 @@ void DFS(int i, int sum)
 {
     if (i == N)
     {
-        ans = sum;
+        ans = max(ans, sum);
         return;
     }
     DFS(i + 1, sum);   //건너뛸경우
