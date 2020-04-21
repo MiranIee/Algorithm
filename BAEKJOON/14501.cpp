@@ -9,7 +9,7 @@ int solution(int N, vector<pair<int, int>> v)
     int temp_sum = 0;
     int DP[N + 1] = {0};
     vector<int> sum;
-    DP[0] = v[0].second;
+    DP[0] = 0;
     DP[v[0].first] = v[0].second;
 
     for (int i = 1; i < N; i++)
@@ -17,8 +17,9 @@ int solution(int N, vector<pair<int, int>> v)
         if (N - i >= v[i].first)
         {
             // if (DP[i - 1] < DP[i]) //받은 게 더 크다면
-            DP[i + v[i].first] = max(DP[i + v[i].first], DP[i] + v[i].second);
+
             DP[i] = max(DP[i - 1], DP[i]);
+            DP[i + v[i].first] = max(DP[i + v[i].first], DP[i] + v[i].second);
         }
     }
 
