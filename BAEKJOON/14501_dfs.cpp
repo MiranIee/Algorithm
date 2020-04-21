@@ -9,15 +9,14 @@ int N;
 int ans;
 void DFS(int i, int sum)
 {
-    if (i >= N)
+    if (i == N)
     {
         ans = sum;
         return;
     }
-
-    if (N - 1 >= T[i]) //is it possible
+    DFS(i + 1, sum);   //건너뛸경우
+    if (N - i >= T[i]) //실현 가능한지
     {
-        DFS(i + 1, sum); //건너뛸경우
         DFS(i + T[i], sum + P[i]);
     }
 }
