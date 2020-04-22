@@ -24,7 +24,6 @@ void DFS(int i, int sum)
 int main()
 {
     int t1, t2;
-
     scanf("%d", &N);
     for (int i = 0; i < N; i++)
     {
