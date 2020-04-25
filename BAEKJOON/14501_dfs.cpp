@@ -2,7 +2,7 @@
 #include <stdio.h>
 using namespace std;
 #define MAX 16
-
+//commit test
 int T[MAX] = {0};
 int P[MAX] = {0};
 int N;
