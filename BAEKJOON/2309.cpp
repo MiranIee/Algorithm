@@ -15,7 +15,7 @@ void solution(int shorter[9])
         for (j = i + 1; j < 9 && sum != 100; j++)
         {
             sum = 0;
-            for (int k = 0; k < 9; k++)
+            for (int k = 0; k < 9; k++)1
             {
                 if (k != i && k != j)
                 {
