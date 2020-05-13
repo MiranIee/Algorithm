@@ -33,13 +33,19 @@ void DFS(int k, int n, int pos)
 int main()
 {
     int k;
-    while (k != 0)
+    while (1)
     {
-        memset(S, 0, sizeof(S)); //배열 초기화, cstring
-        scanf("%d", &k);
+        memset(S, 0, sizeof(S));         //배열 초기화, cstring
+        memset(check, 0, sizeof(check)); //배열 초기화, cstring
+        cin >> k;
+        if (k == 0)
+            break;
         for (int i = 0; i < k; i++)
-            scanf("%d", &S[i]);
+            cin >> S[i];
+        //scanf("%d", &S[i]);
 
         DFS(k, 0, 0);
+        cout << endl;
     }
+    return 0;
 }
