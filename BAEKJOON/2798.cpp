@@ -15,26 +15,22 @@ int solution(int N, int M)
     {
         for (int j = i + 1; j < N - 1; j++)
         {
-            for (int k = j + 1; j < N; j++)
+            for (int k = j + 1; k < N; k++)
             {
-                sum = i + j + k;
+                sum = card[i] + card[j] + card[k];
+
+                if (sum == M)
+                {
+                    return M;
+                }
                 if (close < sum && sum <= M)
                 {
                     close = sum;
                 }
-                if (sum == M)
-                {
-                    flag = true;
-                    break;
-                }
-                if (sum > M)
-                    break;
+                // if (sum > M)
+                //     break;
             }
-            if (flag)
-                break;
         }
-        if (flag)
-            break;
     }
 
     return close;
