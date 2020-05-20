@@ -4,7 +4,7 @@
 #include <algorithm>
 using namespace std;
 
-#define MAX 300
+#define MAX 501
 int arr[MAX][MAX];
 int dp[MAX][MAX];
 
