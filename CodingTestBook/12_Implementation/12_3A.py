@@ -17,8 +17,8 @@ def solution(s):
                 previous = s[j : j + sliceLen]
                 cnt = 1
 
-            tempStr += str(cnt) + previous if cnt >= 2 else previous
+        tempStr += str(cnt) + previous if cnt >= 2 else previous
 
-            answer = min(answer, len(tempStr))
+        answer = min(answer, len(tempStr))
 
     return asnwer

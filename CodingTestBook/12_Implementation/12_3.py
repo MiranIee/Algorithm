@@ -1,32 +1,24 @@
+# s[i : i + sliceLen]: range over 나지 않음 ex)len=5, i+sliceLen=6 => Error x
+#  알아서 처리되는 듯...?
+
+
 def solution(s):
-    answer = 0
-    minLen = len(s)  # 압축 아예 안한 경우: 최솟값
+    answer = len(s)  # 압축 아예 안한 경우: 최솟값
     for sliceLen in range(1, (len(s) // 2) + 1):  # 최대 나눌 수 있는 길이는 len(s)/2
         tempStr = ""
         cnt = 1
-        totalCnt = 0
         previous = s[0:sliceLen]
-        i = sliceLen
-        while totalCnt < len(s) // sliceLen:
-            while previous == s[i : i + sliceLen]:
+        for i in range(sliceLen, len(s), sliceLen):
+            if previous == s[i : i + sliceLen]:
                 cnt += 1
-                i += sliceLen
-                totalCnt += 1
-            if cnt == 1:
-                tempStr += previous
             else:
-                tempStr = tempStr + str(cnt) + previous
-            cnt = 1
-            previous = s[i : i + sliceLen]
-            i += sliceLen
-            totalCnt += 1
+                tempStr += str(cnt) + previous if cnt >= 2 else previous
+                cnt = 1
+                previous = s[i : i + sliceLen]
 
-        if len(s) % sliceLen != 0:  # 나머지가 있다면
-            tempStr += s[len(s) - len(s) % sliceLen :]
-        if len(tempStr) < minLen:
-            minLen = len(tempStr)
+        tempStr += str(cnt) + previous if cnt >= 2 else previous
+        answer = min(answer, len(tempStr))
 
-    answer = minLen
     return answer
 
 
