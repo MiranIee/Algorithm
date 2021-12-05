@@ -34,6 +34,10 @@ class Solution(object):
     #     count_dic[element] += 1
     # return count_dic
 
+    # or
+    # for element in list:
+    #   count_dic[element] = counts_dic.get(element,0)+1
+
     # SOL2)
     # SET을 이용해서 중복 제거 후 반복문에서 nums.count로 길이 / 2와 비교
         # keys = set(nums)
