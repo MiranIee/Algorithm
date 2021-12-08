@@ -26,16 +26,13 @@ class Solution(object):
             stored.append(head.val)
             head = head.next
 
-        newHead = ListNode()
+        newHead = ListNode(0)
         cur = newHead
         for i in range(len(stored)):
-            cur.val = stored[len(stored)-i-1]
-            if i == len(stored)-1:
-                break
-            cur.next = ListNode()
+            cur.next = ListNode(stored[len(stored)-i-1])
             cur = cur.next
 
-        return newHead
+        return newHead.next
 
 # Your runtime beats 78.09 % of python submissions
 # Your memory usage beats 19.29 % of python submissions (17.2 MB)
