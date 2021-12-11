@@ -28,8 +28,3 @@ class Solution:
         return max(maxLen, len(set_))
 
 # @lc code=end
-
-# DP: https://libdwct.github.io/algorithm/leetcode3.html
-# Slding Window: https://velog.io/@kgh732/Python-%EC%9C%BC%EB%A1%9C-%ED%91%B8%EB%8A%94-Leetcode3.-Longest-Substring-Without-Repeating-Characters
-        #  https://inspirit941.tistory.com/304
-# Two pointer: https://torbjorn.tistory.com/570
