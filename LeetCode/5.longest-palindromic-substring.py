@@ -10,17 +10,16 @@ class Solution:
 
         longest = 0
         idx = (0, 0)
-        dic = {}
+
+        if len(s) < 2 or s == s[::-1]:
+            return s
+
         for i in range(len(s)):
             for j in range(i+1, len(s)):
-                if s[i] == s[j]:
-                    new_s = s[i:j+1]
-                    if new_s == new_s[::-1] and longest < len(new_s):
-                        longest = len(new_s)
-                        idx = (i, j)
+                if s[i] == s[j] and longest < j-i+1 and s[i:j+1] == s[i:j+1][::-1]:
+                    longest, idx = j-i+1, (i, j)
+
         return s[idx[0]:idx[1]+1]
 
 
-# a = Solution
-# a.longestPalindrome(a, "babad")
 # @lc code=end
