@@ -1,0 +1,16 @@
+var twoSum = function (nums, target) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(target - nums[i])) {
+      return [map.get(target - nums[i]), i];
+    } else {
+      map.set(nums[i], i);
+    }
+  }
+  return [];
+};
+
+// python Dict = JS map
+// 선언) let map = new Map();
+// 찾기) map.has(key);
+// 삽입) map.set(key, value);
