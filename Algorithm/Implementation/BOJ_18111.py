@@ -13,18 +13,18 @@ resultSec = float('inf')
 resultH = 0
 
 for h in range(257):
-    small, large = 0, 0
+    small, plus = 0, 0
     for i in range(N):
         for j in range(M):
             if graph[i][j] < h:  # 작으면 블록 쌓기
-                small += h - graph[i][j]
+                minus += h - graph[i][j]
             elif graph[i][j] > h:  # 크면 블록 빼기
-                large += graph[i][j] - h
+                plus += graph[i][j] - h
 
-    left = B + large  # 뺀 블록이 추가됨
-    if left < small:
+    leftBlock = B + plus  # 뺀 블록이 추가됨
+    if leftBlock < minus:
         continue
-    time = 2 * large + small
+    time = 2 * plus + minus
 
     if time <= resultSec:
         resultH = h
