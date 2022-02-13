@@ -9,35 +9,26 @@ graph = []
 for _ in range(N):
     graph.append(list(map(int, input().split())))
 
-
 resultSec = float('inf')
 resultH = 0
 
 for h in range(257):
-    left = B  # 인벤토리에 남은 블록의 수
-    totalSec = 0
-    escapeFlg = False
+    small, large = 0, 0
     for i in range(N):
         for j in range(M):
             if graph[i][j] < h:  # 작으면 블록 쌓기
-                if left > 0:
-                    totalSec += h-graph[i][j]
-                    left -= 1
-                else:  # 블록 쌓지 못함
-                    escapeFlg = True
-                    break
+                small += h - graph[i][j]
             elif graph[i][j] > h:  # 크면 블록 빼기
-                totalSec += (graph[i][j]-h) * 2
-                left += 1
+                large += graph[i][j] - h
 
-            if totalSec > resultSec:  # 커지는 순간 계산 필요 X
-                escapeFlg = True
-                break
-        if escapeFlg:
-            break
-    if not escapeFlg:
+    left = B + large  # 뺀 블록이 추가됨
+    if left < small:
+        continue
+    time = 2 * large + small
+
+    if time <= resultSec:
         resultH = h
-        resultSec = totalSec
+        resultSec = time
 
 print(resultSec, end=" ")
 print(resultH)
